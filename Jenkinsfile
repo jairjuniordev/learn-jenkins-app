@@ -26,6 +26,7 @@ pipeline {
                 sh '''
                     echo "Test stage"
                     touch index.html
+                    npm test
                 '''
             }
         }
