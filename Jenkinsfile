@@ -2,18 +2,8 @@ pipeline {
     agent any
 
     stages {
-        stage('w/i dicjer') {
-            steps {
-                sh '''
-                    echo "Sem docker"
-                    ls -la
-                    touch container-no.txt
-                '''
-                
-            }
-        }
-        stage('w/ docker') {
-            agent{
+        stage('Build') {
+            agent {
                 docker {
                     image 'node:18-alpine'
                     reuseNode true
@@ -21,11 +11,13 @@ pipeline {
             }
             steps {
                 sh '''
-                    echo "Com docker"
                     ls -la
+                    node --version
                     npm --version
-                    touch container-yes.txt
-                '''
+                    npm ci
+                    npm run build
+                    ls -la
+                '''               
             }
         }
     }
