@@ -4,7 +4,6 @@ pipeline {
     environment {
         NETLIFY_SITE_ID = 'fa01d260-7d31-47a6-899e-02bf0e65ac43'
         NETLIFY_AUTH_TOKEN = credentials('Netlify-token')
-        CI_ENVIRONMENT_URL = 'https://stately-florentine-2c3070.netlify.app/'
     }
 
     stages {
@@ -102,6 +101,11 @@ pipeline {
                     reuseNode true
                 }
             }
+
+            environment {
+                CI_ENVIRONMENT_URL = 'https://stately-florentine-2c3070.netlify.app/'
+            }
+
             steps{
                 sh '''
                     npx playwright test --reporter=html
