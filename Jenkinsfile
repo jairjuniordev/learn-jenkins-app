@@ -39,7 +39,7 @@ pipeline {
                 AWS_S3_BUCKET = 'jjdevbil'
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'aws_credentials', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
+                withCredentials([usernamePassword(credentialsId: 'aws_credentials_jenkins', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                     sh '''
                         aws --version
                         aws s3 sync build s3://$AWS_S3_BUCKET
